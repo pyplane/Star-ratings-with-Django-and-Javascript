@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+rate now
+{% endblock title %}
+
+{% block content %}
+    {% if object %}
+        <div class="row">
+            <div class="col text-center">
+                <img src="{{object.image.url}}" class="rounded" width="100%" alt="image to rate">
+                <a href="{% url 'main-view' %}"><button class="btn btn-primary mt-3">Next</button></a>
+            </div>
+            <div class="col text-center">
+                <form class="rate-form" action="" method="POST" id="{{object.id}}">
+                    {% csrf_token %}
+                    <button type="submit" class="fa fa-star fa-3x my-btn" id="first"></button>
+                    <button type="submit" class="fa fa-star fa-3x my-btn" id="second"></button>
+                    <button type="submit" class="fa fa-star fa-3x my-btn" id="third"></button>
+                    <button type="submit" class="fa fa-star fa-3x my-btn" id="fourth"></button>
+                    <button type="submit" class="fa fa-star fa-3x my-btn" id="fifth"></button>
+                </form>
+                <br>
+                <div id="confirm-box"></div>
+            </div>
+            
+        </div>
+    {% else %}
+        <h1>No images to rate</h1>
+    {% endif %}
+    
+{% endblock content %}
